@@ -10,8 +10,8 @@ setup(
         author_email='sarahjaine.sz@gmail.com',
         liscense='',
         classifiers=[
-        'Intended Audience :: Developers',
-        'Programming Language :: Python :: 3.5',
+            'Intended Audience :: Developers',
+            'Programming Language :: Python :: 3.5',
         ],
         py_modules=['init'],
         install_requires=[
