@@ -17,6 +17,7 @@ setup(
         install_requires=[
             'click',
             'requests',
+            'cookiecutter,'
          ],
         entry_points='''
             [console_scripts]
