@@ -18,7 +18,7 @@ setup(
             'Programming Language :: Python :: 3.5',
             'Topic :: Software Development :: Libraries :: Python Modules',
         ],
-        py_modules=['init'],
+        py_modules=['mo'],
         install_requires=[
             'click==6.6',
             'requests==2.9.1',
@@ -26,6 +26,6 @@ setup(
          ],
         entry_points='''
             [console_scripts]
-            init=init:cli
+            mo=mo:cli
         '''
 )
