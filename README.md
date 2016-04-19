@@ -13,7 +13,7 @@ pip install mo-cli
 ```
 
 ## Examples
-Start a new ISL 'mo' cookiecutter project:
+Start a new [ISL 'mo' cookiecutter project](https://github.com/istrategylabs?utf8=%E2%9C%93&query=mo):
 ```
 mo init django
 ```
