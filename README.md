@@ -6,7 +6,7 @@ CLI for mo cookiecutter projects
 * [cookiecutter](https://github.com/audreyr/cookiecutter)
 
 ## Usage
-Create a new project from any 'mo' cookiecutter templates straight from command line:
+Create a new project from any 'mo' cookiecutter template from command line:
 
 ```
 pip install mo-cli
