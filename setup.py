@@ -21,8 +21,8 @@ setup(
         py_modules=['mo'],
         install_requires=[
             'click==6.6',
-            'requests==2.9.1',
             'cookiecutter==1.4.0',
+            'requests>=2.9.1',
          ],
         entry_points='''
             [console_scripts]
