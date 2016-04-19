@@ -10,7 +10,7 @@ setup(
         url='https://github.com/SarahJaine/mo-cli',
         author='Sarah Jaine Szekeresh',
         author_email='sarahjaine@isl.co',
-        liscense='MIT',
+        license='MIT',
         classifiers=[
             'Intended Audience :: Developers',
             'License :: OSI Approved :: MIT License',
