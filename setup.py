@@ -5,7 +5,7 @@ long_description = open('README.md').read()
 setup(
         name='mo-cli',
         version='0.1',
-        description='starts new "mo" cookiecutter template',
+        description='CLI for mo cookiecutter projects',
         long_description=long_description,
         url='https://github.com/SarahJaine/mo-cli',
         author='Sarah Jaine Szekeresh',
