@@ -7,8 +7,8 @@ setup(
         version='0.1',
         description='CLI for mo cookiecutter projects',
         long_description=long_description,
-        url='https://github.com/SarahJaine/mo-cli',
-        author='Sarah Jaine Szekeresh',
+        url='https://github.com/istrategylabs/mo-cli',
+        author='Sarah-Jaine Szekeresh',
         author_email='sarahjaine@isl.co',
         liscense='MIT',
         classifiers=[
@@ -20,9 +20,9 @@ setup(
         ],
         py_modules=['mo'],
         install_requires=[
-            'click==6.6',
-            'cookiecutter==1.4.0',
-            'requests>=2.9.1',
+            'click>=6.6,<7',
+            'cookiecutter>=1.4,<2',
+            'requests>=2.9.1,<3',
          ],
         entry_points='''
             [console_scripts]
