@@ -1,7 +1,0 @@
-init.py
-mo_cli.egg-info/PKG-INFO
-mo_cli.egg-info/SOURCES.txt
-mo_cli.egg-info/dependency_links.txt
-mo_cli.egg-info/entry_points.txt
-mo_cli.egg-info/requires.txt
-mo_cli.egg-info/top_level.txt
