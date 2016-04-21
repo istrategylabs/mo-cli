@@ -32,8 +32,8 @@ def init(framework, user):
     except Exception as e:
         sys.exit(e)
     if status != 200:
-        sys.exit("No '{0}' cookiecutter found at {1}."
-                 .format(framework, git_url+user))
+        sys.exit("No '{0}' cookiecutter found at {1}{2}."
+                 .format(framework, git_url, user))
 
     # Run cookiecutter template
     if click.confirm('Ready to start cookiecutter {0}.git '
