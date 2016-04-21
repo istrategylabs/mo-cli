@@ -4,6 +4,19 @@ import requests
 import sys
 
 
+def find_cookiecutter(url, framework):
+    try:
+        response = requests.head(url)
+        status = response.status_code
+    except requests.exceptions.ConnectionError as e:
+        sys.exit("Encountered an error with the connection.")
+    except Exception as e:
+        sys.exit(e)
+    if status != 200:
+        sys.exit("No '{0}' cookiecutter found at {1}."
+                 .format(framework, url))
+
+
 @click.group()
 def cli():
     '''Command-line utility to work with cookiecutter templates from GitHub repos.
@@ -24,23 +37,14 @@ def init(framework, user):
     git_url = 'https://github.com/'
     framework = framework.lower().replace(' ', '-')
     mo_url = "{0}{1}/mo-{2}".format(git_url, user, framework)
-    try:
-        response = requests.head(mo_url)
-        status = response.status_code
-    except requests.exceptions.ConnectionError as e:
-        sys.exit("Encountered an error with the connection.")
-    except Exception as e:
-        sys.exit(e)
-    if status != 200:
-        sys.exit("No '{0}' cookiecutter found at {1}{2}."
-                 .format(framework, git_url, user))
+    find_cookiecutter(mo_url, framework)
 
     # Run cookiecutter template
     if click.confirm('Ready to start cookiecutter {0}.git '
                      'in the current directory.\n'
                      'Do you want to continue?'.format(mo_url)):
         try:
-            cookiecutter(mo_url+'.git')
+            cookiecutter('{0}.git'.format(mo_url))
         except:
-            sys.exit("Problem encounted while cloning '{0}'.git"
+            sys.exit("Problem encounted while cloning '{0}.git'"
                      .format(mo_url))
