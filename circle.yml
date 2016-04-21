@@ -1,4 +1,6 @@
 machine:
   python:
     version: pypy-3.5
-test: tests.py
+test:
+  override:
+    - python tests.py

@@ -23,7 +23,7 @@ def init(framework, user):
     # Check that cookiecutter template exists for requested framework
     git_url = 'https://github.com/'
     framework = framework.lower().replace(' ', '-')
-    mo_url = git_url+user+'/mo-'+framework
+    mo_url = "{0}{1}/mo-{2}".format(git_url, user, framework)
     try:
         response = requests.head(mo_url)
         status = response.status_code
