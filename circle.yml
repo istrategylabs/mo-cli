@@ -1,5 +1,5 @@
 machine:
-  python
+  python:
     version: 3.5.0
 test:
   override:
