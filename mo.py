@@ -4,17 +4,17 @@ import requests
 import sys
 
 
-def find_cookiecutter(url, framework):
+def cookie_find(url):
     try:
         response = requests.head(url)
-        status = response.status_code
+        if response.status_code != 200:
+            sys.exit("{0} not found.".format(url))
+        else:
+            return response.status_code
     except requests.exceptions.ConnectionError as e:
         sys.exit("Encountered an error with the connection.")
     except Exception as e:
         sys.exit(e)
-    if status != 200:
-        sys.exit("No '{0}' cookiecutter found at {1}."
-                 .format(framework, url))
 
 
 @click.group()
@@ -37,7 +37,7 @@ def init(framework, user):
     git_url = 'https://github.com/'
     framework = framework.lower().replace(' ', '-')
     mo_url = "{0}{1}/mo-{2}".format(git_url, user, framework)
-    find_cookiecutter(mo_url, framework)
+    cookie_find(mo_url)
 
     # Run cookiecutter template
     if click.confirm('Ready to start cookiecutter {0}.git '
