@@ -23,6 +23,7 @@ setup(
             'click>=6.6,<7',
             'cookiecutter>=1.4,<2',
             'requests>=2.9.1,<3',
+            'requests-mock>=0.7.0,<1',
          ],
         entry_points='''
             [console_scripts]
