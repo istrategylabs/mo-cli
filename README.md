@@ -6,8 +6,6 @@ CLI for mo cookiecutter projects
 * [cookiecutter](https://github.com/audreyr/cookiecutter)
 
 ## Install
-Create a new project from any 'mo' cookiecutter template from command line:
-
 ```
 brew tap istrategylabs
 brew install mo
