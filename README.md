@@ -5,10 +5,12 @@ CLI for mo cookiecutter projects
 * [click](https://github.com/pallets/click)
 * [cookiecutter](https://github.com/audreyr/cookiecutter)
 
-## Usage
+## Install
 Create a new project from any 'mo' cookiecutter template from command line:
 
 ```
+brew tap istrategylabs
+brew install mo
 ```
 
 ## Examples
