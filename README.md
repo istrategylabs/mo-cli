@@ -7,7 +7,7 @@ CLI for mo cookiecutter projects
 
 ## Install
 ```
-brew tap istrategylabs
+brew tap istrategylabs/isl
 brew install mo
 ```
 
