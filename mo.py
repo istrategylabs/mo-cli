@@ -1,11 +1,8 @@
 from cookiecutter.main import cookiecutter
-from errors import MalformedMoYaml
-from subprocess import call
+from commands.logs import command_logs
 import click
 import requests
-import yaml
 import sys
-import io
 
 
 def cookie_find(url):
@@ -59,23 +56,8 @@ def init(framework, user):
               help='Tail logs for the current mo app',
               default='production')
 def logs(env):
-    try:
-        stream = io.open('mo.yml', 'r')
-        data = yaml.load(stream)
-        heroku_envs = data.get('heroku')
-        if (heroku_envs is None):
-            raise MalformedMoYaml('No heroku apps defined for this project')
+    command_logs(env)
 
-        staging = heroku_envs.get('staging')
-        production = heroku_envs.get('production')
 
-        if (env is 'production' and production is None):
-            raise MalformedMoYaml('No production heroku environment defined')
-        elif (env is staging and production is None):
-            raise MalformedMoYaml('No staging heroku environment defined')
-        else:
-            call(["heroku", "logs", "--tail", "--app", env])
-    except IOError:
-        click.echo('Cannot open mo.yaml')
-    except MalformedMoYaml:
-        click.echo('Malformed mo.yml file')
+if __name__ == '__main__':
+    cli()
