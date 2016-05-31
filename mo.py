@@ -56,26 +56,26 @@ def init(framework, user):
 
 @cli.command()
 @click.option('--env', '-e',
-			  help='Tail logs for the current mo app',
-			  default='production')
+              help='Tail logs for the current mo app',
+              default='production')
 def logs(env):
-	try:
-		stream = io.open('mo.yml', 'r')
-		data = yaml.load(stream)
-		heroku_envs = data.get('heroku')
-		if (heroku_envs is None):
-			raise MalformedMoYaml('No heroku apps defined for this project')
-		staging = heroku_envs.get('staging')
-		production = heroku_envs.get('production')
+    try:
+        stream = io.open('mo.yml', 'r')
+        data = yaml.load(stream)
+        heroku_envs = data.get('heroku')
+        if (heroku_envs is None):
+            raise MalformedMoYaml('No heroku apps defined for this project')
 
-		if (env is 'production' and production is None):
-			raise MalformedMoYaml('No production heroku environment defined')
-		elif (env is staging and production is None):
-			raise MalformedMoYaml('No staging heroku environment defined')
-		else:
-			call(["heroku", "logs", "--tail", "--app", env])
-	except IOError:
-		click.echo('Cannot open mo.yaml')
+        staging = heroku_envs.get('staging')
+        production = heroku_envs.get('production')
 
-if __name__ == '__main__':
-    logs()
+        if (env is 'production' and production is None):
+            raise MalformedMoYaml('No production heroku environment defined')
+        elif (env is staging and production is None):
+            raise MalformedMoYaml('No staging heroku environment defined')
+        else:
+            call(["heroku", "logs", "--tail", "--app", env])
+    except IOError:
+        click.echo('Cannot open mo.yaml')
+    except MalformedMoYaml:
+        click.echo('Malformed mo.yml file')
