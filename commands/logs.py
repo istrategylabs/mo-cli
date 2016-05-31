@@ -24,7 +24,7 @@ def command_logs(env):
         production = heroku_envs.get('production')
 
         # Supported environments are staging and production
-        if (env is not 'staging' and env is not 'production'):
+        if (env != 'staging' and env != 'production'):
             raise UnknownEnvironment("Unknown environment {0}".format(env))
 
         # If the specified (or default) environment is not configured, raise
@@ -33,7 +33,7 @@ def command_logs(env):
             raise MalformedMoYaml('No production heroku environment defined')
         elif (env is staging and production is None):
             raise MalformedMoYaml('No staging heroku environment defined')
-        elif (env is production):
+        elif (env == 'staging'):
             app = staging
         else:
             app = production
