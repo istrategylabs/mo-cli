@@ -1,5 +1,6 @@
 from mo import init, cookie_find
 from click.testing import CliRunner
+from test.test_logs_command import LogsTests
 import unittest
 import requests
 import requests_mock
