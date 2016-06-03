@@ -1,6 +1,8 @@
 # Mo-CLI
 CLI for mo cookiecutter projects
 
+[![Build Status](https://travis-ci.org/istrategylabs/mo-cli.svg?branch=master)](https://travis-ci.org/istrategylabs/mo-cli)
+
 ## Features
 * [click](https://github.com/pallets/click)
 * [cookiecutter](https://github.com/audreyr/cookiecutter)
