@@ -34,9 +34,9 @@ def command_logs(env):
 
         # If the specified (or default) environment is not configured, raise
         # an error
-        if (env is 'production' and production is None):
+        if (env == 'production' and production is None):
             raise MalformedMoYaml('No production heroku environment defined')
-        elif (env is staging and production is None):
+        elif (env == 'staging' and staging is None):
             raise MalformedMoYaml('No staging heroku environment defined')
         elif (env == 'staging'):
             app = staging
@@ -50,4 +50,4 @@ def command_logs(env):
     except MalformedMoYaml:
         sys.exit('Malformed mo.yml file')
     except UnknownEnvironment:
-        sys.exit("Unknown environment {0}".format(env))
+        sys.exit("Unknown environment '{0}'".format(env))
