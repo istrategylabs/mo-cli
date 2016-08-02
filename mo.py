@@ -1,4 +1,5 @@
 from cookiecutter.main import cookiecutter
+from commands.logs import command_logs
 import click
 import requests
 import sys
@@ -48,3 +49,15 @@ def init(framework, user):
         except:
             sys.exit("Problem encounted while cloning '{0}.git'"
                      .format(mo_url))
+
+
+@cli.command()
+@click.option('--env', '-e',
+              help='Tail logs for the current mo app',
+              default='staging')
+def logs(env):
+    command_logs(env)
+
+
+if __name__ == '__main__':
+    cli()
