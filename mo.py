@@ -54,7 +54,7 @@ def init(framework, user):
 @cli.command()
 @click.option('--env', '-e',
               help='Tail logs for the current mo app',
-              default='production')
+              default='staging')
 def logs(env):
     command_logs(env)
 

@@ -9,11 +9,10 @@ import io
 
 
 def command_logs(env):
-    '''This command proxies the tail log command from the heroku-toolbelt.
-    Since mo apps utilize the mo.yml descriptor which should contain it\'s
-    heroku app names, this command will remove the verbosity of the the native
-    command for brevity'''
-
+    """Executes the heroku logs command with the tail flag. The default
+    environment is staging but production can be tailed using the environment
+    flag
+    """
     try:
         # Open the mo.yml file
         # TODO: Search recursively until we get to the root of the project
@@ -38,11 +37,12 @@ def command_logs(env):
             raise MalformedMoYaml('No production heroku environment defined')
         elif (env == 'staging' and staging is None):
             raise MalformedMoYaml('No staging heroku environment defined')
-        elif (env == 'staging'):
-            app = staging
-        else:
+        elif (env == 'production'):
             app = production
+        else:
+            app = staging
 
+        click.echo("\n   heroku logs --tail --app {0}\n".format(app))
         call(["heroku", "logs", "--tail", "--app", app])
 
     except IOError:
