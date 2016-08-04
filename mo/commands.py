@@ -5,7 +5,7 @@ import click
 import sys
 
 
-def command_logs(env, **kwargs):
+def logs(env, **kwargs):
     """Executes the heroku logs command with the tail flag. The default
     environment is staging but production can be tailed using the environment
     flag
