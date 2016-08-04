@@ -2,7 +2,7 @@ import click
 import sys
 from functools import update_wrapper
 from errors import UnknownEnvironment
-from utils import find_config
+from utils import find_config, determine_toolbelt_status
 
 
 class supported_envs(object):
@@ -43,5 +43,26 @@ def require_config(func):
     @click.pass_context
     def wrapper(ctx, *args, **kwargs):
         return ctx.invoke(func, *args, config=data, **kwargs)
+
+    return update_wrapper(wrapper, func)
+
+
+def require_heroku_toolbelt(func):
+    """This decorator determines whether or not the heroku toolbelt
+    is installed. It's required for certain mo commands
+    """
+
+    install_url = "https://toolbelt.heroku.com/"
+    install_err = "You must install the heroku toolbelt. Get it at {0}"\
+        .format(install_url)
+
+    code = determine_toolbelt_status()
+
+    if code != 0:
+        sys.exit(install_err)
+
+    @click.pass_context
+    def wrapper(ctx, *args, **kwargs):
+        return ctx.invoke(func, *args, **kwargs)
 
     return update_wrapper(wrapper, func)

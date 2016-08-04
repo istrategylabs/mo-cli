@@ -1,5 +1,5 @@
 from cookiecutter.main import cookiecutter
-from decorators import supported_envs, require_config
+from decorators import supported_envs, require_config, require_heroku_toolbelt
 from commands.logs import command_logs
 import click
 import requests
@@ -58,6 +58,7 @@ def init(framework, user):
               default='staging')
 @supported_envs("staging", "production")
 @require_config
+@require_heroku_toolbelt
 def logs(env, **kwargs):
     command_logs(env, **kwargs)
 
