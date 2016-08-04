@@ -5,8 +5,10 @@ import yaml
 
 
 def find_config():
+    """Finds the configuration file for this project, and returns it
+    """
     config = None
-    env = os.getenv('ENVIRONMENT', 'development')
+    env = os.getenv('ENVIRONMENT', 'production')
 
     if env != 'test':
         try:

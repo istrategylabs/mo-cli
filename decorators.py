@@ -1,6 +1,4 @@
 import click
-import yaml
-import io
 import sys
 from functools import update_wrapper
 from errors import UnknownEnvironment
@@ -22,12 +20,12 @@ class supported_envs(object):
             env = kwargs.get('env')
             try:
                 # Supported environments are staging and production
-                if (env != 'staging' and env != 'production'):
-                    err = 'Unknown environment {0}'.format(env)
+                if env not in self.envs:
+                    err = "Environment '{0}' is not supported!".format(env)
                     raise UnknownEnvironment(err)
 
-            except UnknownEnvironment:
-                sys.exit('Unknown environment {0}'.format(env))
+            except UnknownEnvironment as err:
+                sys.exit(err)
 
             return ctx.invoke(f, *args, **kwargs)
         return update_wrapper(wrapped_f, f)
@@ -39,9 +37,11 @@ def require_config(func):
     """
     data = find_config()
 
+    if data is None:
+        data = {}
+
     @click.pass_context
     def wrapper(ctx, *args, **kwargs):
         return ctx.invoke(func, *args, config=data, **kwargs)
 
     return update_wrapper(wrapper, func)
-
