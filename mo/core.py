@@ -1,5 +1,5 @@
 from cookiecutter.main import cookiecutter
-from decorators import supported_envs, require_config, require_heroku_toolbelt
+import decorators
 import commands
 import click
 import requests
@@ -56,9 +56,9 @@ def init(framework, user):
 @click.option('--env', '-e',
               help='Tail logs for the current mo app',
               default='staging')
-@supported_envs("staging", "production")
-@require_config
-@require_heroku_toolbelt
+@decorators.supported_envs("staging", "production")
+@decorators.require_config
+@decorators.require_heroku_toolbelt
 def logs(env, **kwargs):
     commands.logs(env, **kwargs)
 
