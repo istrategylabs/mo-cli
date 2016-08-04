@@ -1,6 +1,6 @@
 from cookiecutter.main import cookiecutter
 import mo.decorators
-import commands
+import mo.commands
 import click
 import requests
 import sys
@@ -60,7 +60,7 @@ def init(framework, user):
 @mo.decorators.require_config
 @mo.decorators.require_heroku_toolbelt
 def logs(env, **kwargs):
-    commands.logs(env, **kwargs)
+    mo.commands.logs(env, **kwargs)
 
 
 if __name__ == '__main__':
