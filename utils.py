@@ -6,7 +6,7 @@ import yaml
 
 def find_config():
     config = None
-    env = os.getenv('PY_ENV', 'development')
+    env = os.getenv('ENVIRONMENT', 'development')
 
     if env != 'test':
         try:

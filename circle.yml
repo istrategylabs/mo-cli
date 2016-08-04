@@ -2,7 +2,7 @@ machine:
   python:
     version: 3.5.0
   environment:
-    PY_ENV: test
+    ENVIRONMENT: test
 test:
   override:
     - python tests.py
