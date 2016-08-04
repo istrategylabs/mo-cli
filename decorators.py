@@ -4,6 +4,7 @@ import io
 import sys
 from functools import update_wrapper
 from errors import UnknownEnvironment
+from utils import find_config
 
 
 class supported_envs(object):
@@ -36,15 +37,11 @@ def require_config(func):
     """This decorator ensures that the mo configuration is loaded and
     available
     """
-    data = None
-    try:
-        with io.open('mo.yml', 'r') as stream:
-            data = yaml.load(stream)
-    except IOError:
-        sys.exit('Cannot open mo.yml')
+    data = find_config()
 
     @click.pass_context
     def wrapper(ctx, *args, **kwargs):
         return ctx.invoke(func, *args, config=data, **kwargs)
 
     return update_wrapper(wrapper, func)
+
