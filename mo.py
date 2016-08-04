@@ -1,4 +1,5 @@
 from cookiecutter.main import cookiecutter
+from decorators import supported_envs, require_config
 from commands.logs import command_logs
 import click
 import requests
@@ -55,8 +56,10 @@ def init(framework, user):
 @click.option('--env', '-e',
               help='Tail logs for the current mo app',
               default='staging')
-def logs(env):
-    command_logs(env)
+@supported_envs("staging", "production")
+@require_config
+def logs(env, **kwargs):
+    command_logs(env, **kwargs)
 
 
 if __name__ == '__main__':

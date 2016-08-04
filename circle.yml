@@ -1,6 +1,8 @@
 machine:
   python:
     version: 3.5.0
+  environment:
+    ENVIRONMENT: test
 test:
   override:
     - python tests.py

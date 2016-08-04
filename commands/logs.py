@@ -1,53 +1,34 @@
 
-from errors import MalformedMoYaml
-from errors import UnknownEnvironment
 from subprocess import call
+from errors import MalformedMoYaml
 import click
 import sys
-import yaml
-import io
 
 
-def command_logs(env):
+def command_logs(env, **kwargs):
     """Executes the heroku logs command with the tail flag. The default
     environment is staging but production can be tailed using the environment
     flag
     """
+    config = kwargs.get('config')
+    envs = config.get('heroku')
+    app = envs.get(env)
+
     try:
-        # Open the mo.yml file
-        # TODO: Search recursively until we get to the root of the project
-        stream = io.open('mo.yml', 'r')
-        data = yaml.load(stream)
-        heroku_envs = data.get('heroku')
+        # If there is no heroku section of the mo.yml file,
+        # raise an error
+        if (envs is None):
+            err = 'No heroku apps defined for this project'
+            raise MalformedMoYaml(err)
 
-        # If there is no heroku section of the mo.yml file, raise an error
-        if (heroku_envs is None):
-            raise MalformedMoYaml('No heroku apps defined for this project')
+        configured_env = envs.get(env)
 
-        staging = heroku_envs.get('staging')
-        production = heroku_envs.get('production')
+        if (configured_env is None):
+            err = 'No {0} heroku environment defined'.format(env)
+            raise MalformedMoYaml(err)
 
-        # Supported environments are staging and production
-        if (env != 'staging' and env != 'production'):
-            raise UnknownEnvironment("Unknown environment {0}".format(env))
+    except MalformedMoYaml as err:
+        sys.exit(err)
 
-        # If the specified (or default) environment is not configured, raise
-        # an error
-        if (env == 'production' and production is None):
-            raise MalformedMoYaml('No production heroku environment defined')
-        elif (env == 'staging' and staging is None):
-            raise MalformedMoYaml('No staging heroku environment defined')
-        elif (env == 'production'):
-            app = production
-        else:
-            app = staging
-
-        click.echo("\n   heroku logs --tail --app {0}\n".format(app))
-        call(["heroku", "logs", "--tail", "--app", app])
-
-    except IOError:
-        sys.exit('Cannot open mo.yml')
-    except MalformedMoYaml:
-        sys.exit('Malformed mo.yml file')
-    except UnknownEnvironment:
-        sys.exit("Unknown environment '{0}'".format(env))
+    click.echo("\n   heroku logs --tail --app {0}\n".format(app))
+    call(["heroku", "logs", "--tail", "--app", app])
