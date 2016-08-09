@@ -4,10 +4,7 @@ python:
   - "3.4"
   - "3.5"
 install: "pip install -r requirements.txt"
-before_script:
- - pip install virtualenvwrapper &> /dev/null
- - export WORKON_HOME=$HOME/dev
- - add2virtualenv mo/
+ - export PYTHONPATH=mo
 script: python tests/tests.py
 env:
   - ENVIRONMENT=test
