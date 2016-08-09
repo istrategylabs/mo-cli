@@ -1,8 +1,8 @@
 import click
 import sys
 from functools import update_wrapper
-from mo.errors import UnknownEnvironment
-from mo.helpers import find_config, determine_toolbelt_status
+from errors import UnknownEnvironment
+from helpers import find_config, determine_toolbelt_status
 
 
 class supported_envs(object):

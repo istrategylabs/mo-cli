@@ -8,8 +8,8 @@ setup(
         description='CLI for mo cookiecutter projects',
         long_description=long_description,
         url='https://github.com/istrategylabs/mo-cli',
-        author='Sarah-Jaine Szekeresh',
-        author_email='sarahjaine@isl.co',
+        author='ISL',
+        author_email='dev@isl.co',
         license='MIT',
         classifiers=[
             'Intended Audience :: Developers',
@@ -22,6 +22,7 @@ setup(
         install_requires=[
             'click>=6.6,<7',
             'cookiecutter>=1.4,<2',
+            'PyYAML>=3.11',
             'requests>=2.9.1,<3',
          ],
         entry_points='''

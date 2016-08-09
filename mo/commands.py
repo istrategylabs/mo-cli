@@ -1,6 +1,6 @@
 
 from subprocess import call
-from mo.errors import MalformedMoYaml
+from errors import MalformedMoYaml
 import click
 import sys
 
