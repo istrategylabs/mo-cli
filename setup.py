@@ -18,6 +18,7 @@ setup(
             'Programming Language :: Python :: 3.5',
             'Topic :: Software Development :: Libraries :: Python Modules',
         ],
+        packages=['mo'],
         py_modules=['mo'],
         install_requires=[
             'click>=6.6,<7',
